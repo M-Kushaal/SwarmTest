@@ -4,20 +4,18 @@
 # ============================================================
 
 # ---------- AI model ----------
-# model:
-#   name: claude-sonnet-5-5      # Cheaper. Switch to claude-opus-5-5 for the most capable model
-#   step_effort: medium          # How hard it thinks per step: low | medium | high
-#   report_effort: high          # How hard it thinks when writing the final report
+# claude-opus-5-5 = most capable · claude-sonnet-5-5 = balanced (default) · claude-haiku-5-5 = cheapest
+# Cheap first experiment: name: claude-haiku-5-5, step_effort: low, report_effort: low, max_steps: 8
 model:
-  name: claude-haiku-5-5
-  step_effort: low
-  report_effort: low
+  name: claude-sonnet-5-5
+  step_effort: medium          # How hard it thinks per step: low | medium | high
+  report_effort: high          # How hard it thinks when writing the final report
   screenshots_in_context: 2    # Only the latest N screenshots are sent each step
-#                                # (older steps are kept as text) -> controls cost
+                               # (older steps are kept as text) -> controls cost
 
 # ---------- Run limits (stop runaway agents & costs) ----------
 limits:
-  max_steps: 8 #20                # Agent stops after this many actions
+  max_steps: 20                # Agent stops after this many actions
   max_minutes: 10              # ...or after this much time
   max_total_tokens: 600000     # ...or after this many AI tokens (input + output)
 
