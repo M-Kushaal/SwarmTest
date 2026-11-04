@@ -1,0 +1,133 @@
+# ============================================================
+# TestSwarm configuration
+# Edit freely. Every agent uses these settings.
+# ============================================================
+
+# ---------- AI model ----------
+# model:
+#   name: claude-sonnet-5-5      # Cheaper. Switch to claude-opus-5-5 for the most capable model
+#   step_effort: medium          # How hard it thinks per step: low | medium | high
+#   report_effort: high          # How hard it thinks when writing the final report
+model:
+  name: claude-haiku-5-5
+  step_effort: low
+  report_effort: low
+  screenshots_in_context: 2    # Only the latest N screenshots are sent each step
+#                                # (older steps are kept as text) -> controls cost
+
+# ---------- Run limits (stop runaway agents & costs) ----------
+limits:
+  max_steps: 8 #20                # Agent stops after this many actions
+  max_minutes: 10              # ...or after this much time
+  max_total_tokens: 600000     # ...or after this many AI tokens (input + output)
+
+# ---------- Browser ----------
+browser:
+  headless: false              # false = you see the browser window live
+  viewport: { width: 1280, height: 800 }
+  slow_mo_ms: 150              # Small delay per action so you can follow along
+  highlight_before_click_ms: 600   # Red box shown on the element before clicking
+  page_load_timeout_s: 20
+  save_trace: true             # Step-by-step replay: playwright show-trace runs/<id>/trace.zip
+
+# ---------- Guardrails (enforced in code, not by the AI) ----------
+guardrails:
+  # The target URL's domain is always allowed. Add extra domains the agent
+  # may NAVIGATE to (e.g. your auth provider). Images/scripts from CDNs still load.
+  extra_allowed_domains: []
+    # - auth.yourapp.com
+
+  # normal = forms work (signup etc.)
+  # strict = block ALL data-changing requests (POST/PUT/PATCH/DELETE) - nothing on the server can change
+  safe_mode: normal
+
+  # Any request to these domains is blocked outright (payments).
+  blocked_payment_domains:
+    - stripe.com
+    - stripe.network
+    - paypal.com
+    - paypalobjects.com
+    - razorpay.com
+    - braintreegateway.com
+    - braintree-api.com
+    - squareup.com
+    - adyen.com
+    - checkout.com
+    - paddle.com
+    - lemonsqueezy.com
+    - chargebee.com
+    - klarna.com
+    - afterpay.com
+    - pay.google.com
+    - apple-pay-gateway.apple.com
+
+  # Clicks on elements whose text/label contains these words are blocked.
+  # (whole-word, case-insensitive)
+  blocked_click_words:
+    - pay
+    - pay now
+    - buy
+    - buy now
+    - purchase
+    - place order
+    - complete order
+    - checkout
+    - check out
+    - subscribe
+    - upgrade
+    - confirm payment
+    - add card
+    - add payment
+    - billing
+    - delete account
+    - delete my account
+    - close account
+    - cancel subscription
+    - deactivate
+
+  # The agent may never type into fields whose name/id/label/autocomplete
+  # contains these keywords (card details, bank details).
+  blocked_field_keywords:
+    - card
+    - cc-
+    - cvv
+    - cvc
+    - csc
+    - expiry
+    - exp-date
+    - iban
+    - routing
+    - account-number
+    - sort-code
+    - ssn
+
+  allow_downloads: false
+  allow_file_uploads: false
+
+# ---------- CAPTCHA ----------
+captcha:
+  pause_for_human: true        # Agent pauses; you solve it in the browser; press Enter to resume
+
+# ---------- Pauses (human in the loop) ----------
+# When a guardrail blocks an action, the agent can pause and ask you what to do:
+#   Enter = end this agent's session  |  allow = allow that ONE action (blocked-word rules only)
+#   any other text = an instruction for the agent, e.g. "go back and compare other products"
+# Payment-domain, card-field and card-number blocks can NEVER be allowed.
+pauses:
+  on_block: pause              # pause | continue (agent just gets told "blocked" and decides itself)
+  timeout_s: 300               # no answer within 5 min -> that agent's session ends
+                               # (also applies to CAPTCHA and API/credits pauses)
+
+# ---------- Multi-agent runs ----------
+swarm:
+  max_parallel: 5              # at most this many agents (browsers) at the same time; others wait
+
+# ---------- Live dashboard ----------
+dashboard:
+  enabled: true                # live web page showing every agent: http://127.0.0.1:8765
+  port: 8765
+  open_browser: true           # open the dashboard automatically when a run starts
+
+# ---------- Output ----------
+output:
+  runs_dir: runs               # Each run saves to runs/<timestamp>_<agent-name>/

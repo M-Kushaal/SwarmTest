@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="880" height="220" viewBox="0 0 880 220" role="img" aria-labelledby="t d">
+  <title id="t">TestSwarm</title>
+  <desc id="d">TestSwarm logo: a swarm of connected nodes next to the TestSwarm wordmark</desc>
+  <defs>
+    <radialGradient id="glow" cx="22%" cy="30%" r="75%">
+      <stop offset="0" stop-color="#22d3ee" stop-opacity=".22"/>
+      <stop offset=".55" stop-color="#22d3ee" stop-opacity=".04"/>
+      <stop offset="1" stop-color="#22d3ee" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="node" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#67e8f9"/>
+      <stop offset="1" stop-color="#0ea5e9"/>
+    </linearGradient>
+    <linearGradient id="word" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#22d3ee"/>
+      <stop offset="1" stop-color="#60a5fa"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="880" height="220" rx="24" fill="#070b16"/>
+  <rect width="880" height="220" rx="24" fill="url(#glow)"/>
+  <rect x=".5" y=".5" width="879" height="219" rx="23.5" fill="none" stroke="#94a3b8" stroke-opacity=".18"/>
+
+  <!-- mark: a small swarm of agents, one highlighted -->
+  <g transform="translate(70 40)">
+    <rect width="140" height="140" rx="32" fill="#0d1426" stroke="#22d3ee" stroke-opacity=".35"/>
+    <g stroke="#22d3ee" stroke-opacity=".55" stroke-width="4" stroke-linecap="round">
+      <line x1="42" y1="46" x2="98" y2="46"/>
+      <line x1="42" y1="46" x2="70" y2="98"/>
+      <line x1="98" y1="46" x2="70" y2="98"/>
+      <line x1="98" y1="46" x2="112" y2="86"/>
+      <line x1="42" y1="46" x2="28" y2="86"/>
+    </g>
+    <circle cx="42" cy="46" r="14" fill="url(#node)"/>
+    <circle cx="98" cy="46" r="14" fill="url(#node)"/>
+    <circle cx="70" cy="98" r="16" fill="url(#node)"/>
+    <circle cx="28" cy="86" r="8" fill="#22d3ee" fill-opacity=".55"/>
+    <circle cx="112" cy="86" r="8" fill="#fbbf24"/>
+  </g>
+
+  <!-- wordmark -->
+  <text x="245" y="118" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="72" font-weight="700"
+        letter-spacing="-1.5" fill="#e8edf7">Test<tspan fill="url(#word)">Swarm</tspan></text>
+  <text x="248" y="160" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="22" fill="#b6c1d6">
+    AI personas that test your web app in a real browser</text>
+</svg>

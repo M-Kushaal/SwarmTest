@@ -1,0 +1,14 @@
+# --- AI brain ---
+anthropic>=2.4,<3        # Official Claude SDK: sends screenshots + page info, receives actions
+
+# --- Browser control ---
+playwright>=1.64,<2      # Drives a real Chromium browser: clicks, typing, screenshots, network blocking
+
+# --- Config & data ---
+pyyaml>=6.0              # Reads config.yaml and personas.yaml
+pydantic>=2.7            # Validates config so typos/missing fields give a clear error
+python-dotenv>=1.0       # Loads ANTHROPIC_API_KEY (and future login creds) from .env
+
+# --- Terminal UI ---
+rich>=13.7               # Live, colored terminal panel showing what the agent is doing
+typer>=0.12              # Command-line interface: `python -m testswarm run --agent ...`

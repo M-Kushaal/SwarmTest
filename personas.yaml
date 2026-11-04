@@ -1,0 +1,48 @@
+# ============================================================
+# TestSwarm agents
+# One entry = one agent.  persona = WHO it is.  objective = WHAT it tries to do.
+# Keep persona and objective separate; they're combined at run time.
+#
+#   Run one:   python -m testswarm run --agent retired-teacher
+#   Run all:   python -m testswarm run --all        (Phase 2)
+# ============================================================
+
+# Default URL every agent starts on (an agent can override with its own `url:`)
+url: https://www.saucedemo.com
+
+agents:
+  - name: shopper
+    persona: >
+      30 year old office worker shopping on her lunch break. Moderately
+      comfortable with technology, a bit impatient, compares prices before buying.
+    objective: >
+      Log in using {{USERNAME}} and {{PASSWORD}}, find the cheapest backpack or
+      bag, add it to the cart, and try to complete the purchase.
+      Report anything confusing or broken.
+
+  - name: retired-teacher
+    persona: >
+      65 year old retired school teacher. Not comfortable with technology,
+      reads everything slowly and carefully, gets anxious about entering
+      personal information, gives up if something is confusing for too long.
+    objective: >
+      Find out what this website offers and how much it costs.
+      Decide whether you would sign up, and explain why or why not.
+
+  # - name: busy-founder
+  #   persona: >
+  #     34 year old startup founder, very impatient, skims pages, expects to
+  #     understand the value in under 10 seconds, uses the website on a laptop
+  #     between meetings.
+  #   objective: >
+  #     Figure out in as few clicks as possible whether this product solves
+  #     your problem, then try to start a free trial or sign up.
+
+  # - name: curious-explorer
+  #   persona: >
+  #     22 year old student who loves trying new apps. Clicks on everything,
+  #     opens every menu, tests what happens with odd inputs.
+  #   objective: >
+  #     Explore as many pages and features as you can. Report anything broken,
+  #     confusing, surprising, or delightful.
+  #   # url: https://example.com/features   # optional per-agent start page
