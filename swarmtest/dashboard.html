@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>TestSwarm</title>
+<title>SwarmTest</title>
 <style>
 /* ===================== tokens: navy base, cyan accent ===================== */
 :root {
@@ -331,7 +331,7 @@ select { width: auto; padding: 6px 10px; }
 <header>
   <div class="wrap hbar">
     <span class="mark" aria-hidden="true"><svg class="i"><use href="#i-swarm"/></svg></span>
-    <div class="hname"><b>TestSwarm run</b><span id="runMeta">Loading…</span></div>
+    <div class="hname"><b>SwarmTest run</b><span id="runMeta">Loading…</span></div>
     <div class="hright">
       <span class="conn" id="conn"><i></i><span id="connT">Connected</span></span>
       <button class="btn" type="button" id="activityBtn" aria-haspopup="dialog">
@@ -566,7 +566,7 @@ function renderSummary() {
   setText($("#runState"), state); $("#stateDot").style.background = color;
   setText($("#stateSub"), `${A.length} persona${A.length === 1 ? "" : "s"}${hosts ? ` tested on ${hosts}` : ""} · ${steps} steps used · ${fmt(elapsed)}${complete ? " total" : " elapsed"}`);
   setText($("#runMeta"), `${S.meta.run_name || "live run"}${hosts ? ` · ${hosts}` : ""}`);
-  document.title = input ? `(${input}) Needs input · TestSwarm` : `${state} · TestSwarm`;
+  document.title = input ? `(${input}) Needs input · SwarmTest` : `${state} · SwarmTest`;
   setText($("#nCompleted"), String(completed)); setText($("#nNotCompleted"), String(notCompleted));
   setText($("#nInput"), String(input)); setText($("#nRunning"), String(running));
   const is = $("#inputStat"); is.disabled = !input; is.classList.toggle("hot", !!input); $("#inputCta").hidden = !input;
@@ -791,7 +791,7 @@ async function answer(id, text, btns) {
   try { const r = await fetch("/api/answer", { method: "POST", headers: { "Content-Type": "application/json", "X-TS-Token": TOKEN },
                                                 body: JSON.stringify({ id, text }) });
         if (!r.ok) { alert("This request was already answered or has timed out."); btns.forEach(b => b.disabled = false); } }
-  catch { alert("Lost connection to TestSwarm."); btns.forEach(b => b.disabled = false); }
+  catch { alert("Lost connection to SwarmTest."); btns.forEach(b => b.disabled = false); }
   await refresh(); await loadDetail(); $("#dBody")._h = null; renderDrawer();
 }
 

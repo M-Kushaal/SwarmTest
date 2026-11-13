@@ -11,10 +11,10 @@ import json
 from pathlib import Path
 from typing import Any
 
-from testswarm.agent import RunResult
-from testswarm.browser import TechIssues
-from testswarm.guardrails import Guard
-from testswarm.llm import LLM, LLMError
+from swarmtest.agent import RunResult
+from swarmtest.browser import TechIssues
+from swarmtest.guardrails import Guard
+from swarmtest.llm import LLM, LLMError
 
 SEVERITY = {"type": "string", "enum": ["high", "medium", "low"]}
 
@@ -125,7 +125,7 @@ def _cell(text: str, n: int = 140) -> str:
 def _markdown(r: RunResult, a: dict[str, Any] | None, error: str, issues: TechIssues, guard: Guard) -> str:
     p = r.profile
     who = p.get("display_name") or r.agent
-    out = [f"# TestSwarm report: {r.agent}", ""]
+    out = [f"# SwarmTest report: {r.agent}", ""]
     out += ["| | |", "|---|---|",
             f"| **Website** | {r.url} |",
             f"| **Persona** | {who}: {_cell(p.get('original_description', ''), 200)} |",

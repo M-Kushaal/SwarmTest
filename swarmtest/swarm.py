@@ -13,11 +13,11 @@ from typing import Any
 
 from rich.console import Console
 
-from testswarm.agent import Agent
-from testswarm.config import AgentSpec, Config
-from testswarm.dashboard import Dashboard
-from testswarm.report import write_report
-from testswarm.supervisor import Supervisor
+from swarmtest.agent import Agent
+from swarmtest.config import AgentSpec, Config
+from swarmtest.dashboard import Dashboard
+from swarmtest.report import write_report
+from swarmtest.supervisor import Supervisor
 
 STAGGER_S = 1.5  # seconds between agent starts
 
@@ -121,7 +121,7 @@ def write_summary(base_dir: Path, names: list[str]) -> Path:
             sections += [f"- **Fix (high):** {r['recommendation']}" for r in recs]
             sections.append("")
 
-    md = ["# TestSwarm: swarm summary", "",
+    md = ["# SwarmTest: swarm summary", "",
           f"{len(names)} agents · {totals['steps']} steps · {totals['blocked']} blocked actions · "
           f"{totals['tokens']:,} tokens", "",
           "| Agent | Status | Objective achieved | Usability | Steps | Avg confusion | Blocked | Tokens |",

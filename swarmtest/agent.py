@@ -15,13 +15,13 @@ from urllib.parse import urlparse
 
 from pydantic import BaseModel, ValidationError
 
-from testswarm.browser import BrowserSession, Observation, PageStuck
-from testswarm.config import AgentSpec, Config
-from testswarm.guardrails import Guard
-from testswarm.llm import LLM, LLMError, LLMStopped
-from testswarm.logger import RunLogger
-from testswarm.persona import expand_persona, profile_to_text, save_profile
-from testswarm.supervisor import Supervisor
+from swarmtest.browser import BrowserSession, Observation, PageStuck
+from swarmtest.config import AgentSpec, Config
+from swarmtest.guardrails import Guard
+from swarmtest.llm import LLM, LLMError, LLMStopped
+from swarmtest.logger import RunLogger
+from swarmtest.persona import expand_persona, profile_to_text, save_profile
+from swarmtest.supervisor import Supervisor
 
 ActionType = Literal["click", "type", "scroll", "go_back", "navigate", "wait", "note", "give_up", "finish"]
 EMOTIONS = ["happy", "neutral", "curious", "confused", "frustrated", "anxious", "bored", "impressed", "annoyed"]

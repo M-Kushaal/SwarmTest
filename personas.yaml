@@ -1,10 +1,10 @@
 # ============================================================
-# TestSwarm agents
+# SwarmTest agents
 # One entry = one agent.  persona = WHO it is.  objective = WHAT it tries to do.
 # Keep persona and objective separate; they're combined at run time.
 #
-#   Run one:   python -m testswarm run --agent retired-teacher
-#   Run all:   python -m testswarm run --all        (Phase 2)
+#   Run one:   python -m swarmtest run --agent retired-teacher
+#   Run all:   python -m swarmtest run --all        (Phase 2)
 # ============================================================
 
 # Default URL every agent starts on (an agent can override with its own `url:`)

@@ -1,11 +1,11 @@
 """Command line.
 
-    python -m testswarm list                         show agents in personas.yaml
-    python -m testswarm check                        validate config.yaml + personas.yaml
-    python -m testswarm run --agent retired-teacher  run one agent
-    python -m testswarm run -a shopper -a retired-teacher   run several in parallel
-    python -m testswarm run --all                    run every agent in personas.yaml
-    python -m testswarm run --agent retired-teacher --url https://staging.myapp.com
+    python -m swarmtest list                         show agents in personas.yaml
+    python -m swarmtest check                        validate config.yaml + personas.yaml
+    python -m swarmtest run --agent retired-teacher  run one agent
+    python -m swarmtest run -a shopper -a retired-teacher   run several in parallel
+    python -m swarmtest run --all                    run every agent in personas.yaml
+    python -m swarmtest run --agent retired-teacher --url https://staging.myapp.com
 """
 
 from __future__ import annotations
@@ -20,7 +20,7 @@ import typer
 from rich.console import Console
 from rich.table import Table
 
-from testswarm.config import (
+from swarmtest.config import (
     ConfigError,
     has_api_credentials,
     load_config,
@@ -28,10 +28,10 @@ from testswarm.config import (
     load_personas,
     load_secrets,
 )
-from testswarm.swarm import run_agents
+from swarmtest.swarm import run_agents
 
 app = typer.Typer(add_completion=False, no_args_is_help=True,
-                  help="TestSwarm: AI persona agents that test your web app in a real browser.")
+                  help="SwarmTest: AI persona agents that test your web app in a real browser.")
 console = Console()
 
 CONFIG_OPT = typer.Option("config.yaml", "--config", help="Path to config.yaml")
@@ -91,7 +91,7 @@ def run(
 ) -> None:
     """Run one or more agents against the website."""
     if not agent and not all_agents:
-        _fail("Choose agents: --agent <name> (repeatable) or --all   (see: python -m testswarm list)")
+        _fail("Choose agents: --agent <name> (repeatable) or --all   (see: python -m swarmtest list)")
 
     load_env()
     try:
@@ -131,7 +131,7 @@ def demo(
     config: Path = CONFIG_OPT,
 ) -> None:
     """Simulate up to 10 agents on saucedemo.com with a scripted fake AI. NO API calls, no cost."""
-    from testswarm.demo import run_demo
+    from swarmtest.demo import run_demo
     try:
         cfg = load_config(config)
     except ConfigError as e:

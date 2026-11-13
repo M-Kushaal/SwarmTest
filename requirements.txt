@@ -11,4 +11,4 @@ python-dotenv>=1.0       # Loads ANTHROPIC_API_KEY (and future login creds) from
 
 # --- Terminal UI ---
 rich>=13.7               # Live, colored terminal panel showing what the agent is doing
-typer>=0.12              # Command-line interface: `python -m testswarm run --agent ...`
+typer>=0.12              # Command-line interface: `python -m swarmtest run --agent ...`

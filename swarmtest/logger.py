@@ -17,7 +17,7 @@ from rich.panel import Panel
 from rich.table import Table
 from rich.text import Text
 
-from testswarm.guardrails import Guard
+from swarmtest.guardrails import Guard
 
 CONFUSION_COLORS = {1: "green", 2: "green", 3: "yellow", 4: "dark_orange", 5: "red"}
 AGENT_COLORS = ["cyan", "magenta", "bright_blue", "yellow", "green", "bright_red",
@@ -72,7 +72,7 @@ class RunLogger:
         t.add_row("[bold]Safe mode[/]", safe_mode)
         t.add_row("[bold]Login placeholders[/]", ", ".join("{{" + s + "}}" for s in secrets) or "none")
         t.add_row("[bold]Run folder[/]", escape(str(self.run_dir)))
-        self.console.print(Panel(t, title=self._title("TestSwarm agent starting"), border_style="cyan"))
+        self.console.print(Panel(t, title=self._title("SwarmTest agent starting"), border_style="cyan"))
 
     def phase(self, phase: str, step: int, **extra: Any) -> None:
         """Live status for the dashboard only (not saved, not printed): observing / thinking / acting."""

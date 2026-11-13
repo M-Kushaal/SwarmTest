@@ -3,10 +3,10 @@
 NO Claude API calls, no credits. Everything else is real: real browsers, real clicks,
 real guardrails, real pauses, real dashboard, real reports (with fake analysis).
 
-    python -m testswarm demo                 # 10 agents
-    python -m testswarm demo --agents 3
-    python -m testswarm demo --headless      # no browser windows, just the dashboard
-    python -m testswarm demo --parallel 3    # at most 3 browsers at once (less RAM)
+    python -m swarmtest demo                 # 10 agents
+    python -m swarmtest demo --agents 3
+    python -m swarmtest demo --headless      # no browser windows, just the dashboard
+    python -m swarmtest demo --parallel 3    # at most 3 browsers at once (less RAM)
 """
 
 from __future__ import annotations
@@ -21,12 +21,12 @@ from typing import Any
 
 from rich.console import Console
 
-from testswarm.agent import DECISION_SCHEMA
-from testswarm.config import AgentSpec, Config
-from testswarm.llm import LLM
-from testswarm.persona import PROFILE_SCHEMA
-from testswarm.report import REPORT_SCHEMA
-from testswarm.swarm import run_agents
+from swarmtest.agent import DECISION_SCHEMA
+from swarmtest.config import AgentSpec, Config
+from swarmtest.llm import LLM
+from swarmtest.persona import PROFILE_SCHEMA
+from swarmtest.report import REPORT_SCHEMA
+from swarmtest.swarm import run_agents
 
 DEMO_URL = "https://www.saucedemo.com"
 DEMO_SECRETS = {"USERNAME": "standard_user", "PASSWORD": "secret_sauce"}  # public demo login shown on the site

@@ -16,7 +16,7 @@ import yaml
 from dotenv import load_dotenv
 from pydantic import BaseModel, ConfigDict, Field, ValidationError, field_validator, model_validator
 
-SECRET_PREFIX = "TESTSWARM_SECRET_"
+SECRET_PREFIX = "SWARMTEST_SECRET_"
 Effort = Literal["low", "medium", "high", "xhigh", "max"]
 
 
@@ -191,7 +191,7 @@ class PersonasFile(_Strict):
 
 def _read_yaml(path: Path) -> dict:
     if not path.exists():
-        raise ConfigError(f"Can't find {path}. Are you running from the TestSwarm folder?")
+        raise ConfigError(f"Can't find {path}. Are you running from the SwarmTest folder?")
     try:
         data = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
     except yaml.YAMLError as e:
@@ -237,7 +237,7 @@ def has_api_credentials() -> bool:
 
 
 def load_secrets() -> dict[str, str]:
-    """TESTSWARM_SECRET_PASSWORD=abc  ->  {"PASSWORD": "abc"}
+    """SWARMTEST_SECRET_PASSWORD=abc  ->  {"PASSWORD": "abc"}
     The agent only ever sees "{{PASSWORD}}"; values stay in this process."""
     return {
         key[len(SECRET_PREFIX):]: value

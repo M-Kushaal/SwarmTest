@@ -23,7 +23,7 @@ from pathlib import Path
 from typing import Any
 from urllib.parse import parse_qs, urlparse
 
-from testswarm.supervisor import Supervisor
+from swarmtest.supervisor import Supervisor
 
 SHOT_RE = re.compile(r"^step_\d{1,4}\.jpg$")
 BLOCK_REASON_RE = re.compile(r"BLOCKED by safety rule: (.*?)(?:\. The human supervisor|\. Session ended|$)")

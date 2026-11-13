@@ -10,8 +10,8 @@ from typing import Any
 
 import yaml
 
-from testswarm.config import AgentSpec
-from testswarm.llm import LLM, LLMError, LLMStopped
+from swarmtest.config import AgentSpec
+from swarmtest.llm import LLM, LLMError, LLMStopped
 
 LEVELS = ["very low", "low", "medium", "high", "very high"]
 

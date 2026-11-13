@@ -14,7 +14,7 @@ from datetime import datetime
 from typing import Any
 from urllib.parse import urlparse
 
-from testswarm.config import Guardrails
+from swarmtest.config import Guardrails
 
 # Requests that only read data. In strict mode everything else is blocked.
 SAFE_METHODS = {"GET", "HEAD", "OPTIONS"}

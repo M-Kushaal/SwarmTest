@@ -29,8 +29,8 @@ from playwright.async_api import (
     async_playwright,
 )
 
-from testswarm.config import BrowserSettings
-from testswarm.guardrails import Guard
+from swarmtest.config import BrowserSettings
+from swarmtest.guardrails import Guard
 
 MAX_ELEMENTS = 120
 MAX_ISSUES = 200

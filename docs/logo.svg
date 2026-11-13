@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="880" height="220" viewBox="0 0 880 220" role="img" aria-labelledby="t d">
-  <title id="t">TestSwarm</title>
-  <desc id="d">TestSwarm logo: a swarm of connected nodes next to the TestSwarm wordmark</desc>
+  <title id="t">SwarmTest</title>
+  <desc id="d">SwarmTest logo: a swarm of connected nodes next to the SwarmTest wordmark</desc>
   <defs>
     <radialGradient id="glow" cx="22%" cy="30%" r="75%">
       <stop offset="0" stop-color="#22d3ee" stop-opacity=".22"/>
@@ -40,7 +40,7 @@
 
   <!-- wordmark -->
   <text x="245" y="118" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="72" font-weight="700"
-        letter-spacing="-1.5" fill="#e8edf7">Test<tspan fill="url(#word)">Swarm</tspan></text>
+        letter-spacing="-1.5" fill="#e8edf7"><tspan fill="url(#word)">Swarm</tspan>Test</text>
   <text x="248" y="160" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="22" fill="#b6c1d6">
     AI personas that test your web app in a real browser</text>
 </svg>

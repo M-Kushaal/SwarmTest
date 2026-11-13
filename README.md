@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/logo.svg" alt="TestSwarm — AI personas that test your web app in a real browser" width="760">
+  <img src="docs/logo.svg" alt="SwarmTest — AI personas that test your web app in a real browser" width="760">
 </p>
 
 <p align="center">
@@ -16,7 +16,7 @@
   <a href="#configuration">Configuration</a>
 </p>
 
-![TestSwarm dashboard: ten personas testing a demo shop](docs/dashboard-overview.png)
+![SwarmTest dashboard: ten personas testing a demo shop](docs/dashboard-overview.png)
 
 ---
 
@@ -24,7 +24,7 @@
 
 You describe a few personas in plain English — *"65 year old retired teacher, not comfortable with
 technology, gives up when confused"* — and give each one an objective — *"find out what this costs
-and decide whether you'd sign up"*. TestSwarm then:
+and decide whether you'd sign up"*. SwarmTest then:
 
 - 🧑‍💻 **Runs each persona in its own real Chromium browser** (via Playwright). Real clicks, real typing, real page loads.
 - 👀 **Lets Claude see the page** as a screenshot with numbered labels on every clickable element, plus the text of the page.
@@ -42,7 +42,7 @@ The guardrail stops it at checkout, exactly as configured.
 ![Nine screenshots from one shopper run, from login to the blocked checkout](docs/shopper-run-3x3.png)
 
 > **Honest note:** AI personas simulate *plausible* behaviour, not real human behaviour.
-> Use TestSwarm to find problems early and cheaply, then validate what matters with real users.
+> Use SwarmTest to find problems early and cheaply, then validate what matters with real users.
 
 ---
 
@@ -77,8 +77,8 @@ the **guardrails** approve or block it, the browser **acts**, and everything is 
 ### 2. Download and install
 
 ```bash
-git clone https://github.com/M-Kushaal/TestSwarm.git
-cd TestSwarm
+git clone https://github.com/M-Kushaal/SwarmTest.git
+cd SwarmTest
 
 # create an isolated Python environment
 python -m venv .venv
@@ -98,7 +98,7 @@ No API key, no cost. Ten scripted personas shop on [saucedemo.com](https://www.s
 (a public practice store) so you can see the browsers, the dashboard, the pauses and the reports:
 
 ```bash
-python -m testswarm demo
+python -m swarmtest demo
 ```
 
 Your browser opens the dashboard at **http://127.0.0.1:8765**. Some demo personas deliberately hit
@@ -123,8 +123,8 @@ Open `.env` and replace `sk-ant-your-key-here` with your real key. `.env` is git
 The project ships with an example persona that shops on the practice store:
 
 ```bash
-python -m testswarm check                  # checks your settings, files and API key
-python -m testswarm run --agent shopper    # runs one persona
+python -m swarmtest check                  # checks your settings, files and API key
+python -m swarmtest run --agent shopper    # runs one persona
 ```
 
 Watch the browser and the dashboard, then open the report in `runs/<date-time>_shopper/report.md`.
@@ -134,7 +134,7 @@ Watch the browser and the dashboard, then open the report in `runs/<date-time>_s
 Edit **`personas.yaml`**: set `url:` to your site and describe your personas (see below). Then:
 
 ```bash
-python -m testswarm run --all
+python -m swarmtest run --all
 ```
 
 ---
@@ -168,7 +168,7 @@ agents:
 
 **To add an agent, add another entry.** Tips:
 
-- **Persona:** age or role, tech comfort, patience, mood and worries. TestSwarm expands your short
+- **Persona:** age or role, tech comfort, patience, mood and worries. SwarmTest expands your short
   description into a full profile and saves it with the run (`persona.yaml`).
 - **Objective:** a concrete goal plus what to report — *"…and explain why or why not."*
 - **Logins:** write `{{USERNAME}}` / `{{PASSWORD}}` in the objective and define them in `.env` (see [Logins](#logins-and-secrets)).
@@ -179,14 +179,14 @@ agents:
 
 | Command | What it does |
 |---|---|
-| `python -m testswarm check` | Validates `config.yaml`, `personas.yaml` and `.env` without running anything |
-| `python -m testswarm list` | Lists your personas |
-| `python -m testswarm run --agent shopper` | Runs one persona |
-| `python -m testswarm run -a shopper -a retired-teacher` | Runs several, in parallel |
-| `python -m testswarm run --all` | Runs every persona in `personas.yaml` |
-| `python -m testswarm run --all --url https://staging.example.com` | Same personas, different site |
-| `python -m testswarm run --all --no-dashboard` | Without the web dashboard |
-| `python -m testswarm demo [-n 5] [--parallel 2] [--headless]` | Free simulation, no API calls |
+| `python -m swarmtest check` | Validates `config.yaml`, `personas.yaml` and `.env` without running anything |
+| `python -m swarmtest list` | Lists your personas |
+| `python -m swarmtest run --agent shopper` | Runs one persona |
+| `python -m swarmtest run -a shopper -a retired-teacher` | Runs several, in parallel |
+| `python -m swarmtest run --all` | Runs every persona in `personas.yaml` |
+| `python -m swarmtest run --all --url https://staging.example.com` | Same personas, different site |
+| `python -m swarmtest run --all --no-dashboard` | Without the web dashboard |
+| `python -m swarmtest demo [-n 5] [--parallel 2] [--headless]` | Free simulation, no API calls |
 
 While a run is going, the terminal prints every step (tagged with the persona's name), each persona
 gets its own browser window, and **Ctrl+C** stops everything cleanly.
@@ -223,7 +223,7 @@ dashboard or in the terminal:
 | Situation | Your options |
 |---|---|
 | **An action was blocked by a guardrail** | **End** the session (default) · **Allow once** (only for blocked *words*, e.g. "checkout" on a test shop) · **type an instruction**, e.g. *"go back and compare the other products"* — the persona continues from the same page with the same memory |
-| **A CAPTCHA appeared** | Solve it yourself in that persona's browser window, then **continue** — TestSwarm never bypasses CAPTCHAs |
+| **A CAPTCHA appeared** | Solve it yourself in that persona's browser window, then **continue** — SwarmTest never bypasses CAPTCHAs |
 | **API credits ran out / rate limit / no internet** | Top up or wait, then **retry** — nothing is lost — or end the session |
 
 No answer within 5 minutes (configurable) ends that persona's session; its report is still written.
@@ -254,11 +254,11 @@ Payment, card and leave-the-site rules **can never be overridden**, not even wit
 
 ## Logins and secrets
 
-Put test credentials in `.env` with the `TESTSWARM_SECRET_` prefix:
+Put test credentials in `.env` with the `SWARMTEST_SECRET_` prefix:
 
 ```bash
-TESTSWARM_SECRET_USERNAME=standard_user
-TESTSWARM_SECRET_PASSWORD=secret_sauce
+SWARMTEST_SECRET_USERNAME=standard_user
+SWARMTEST_SECRET_PASSWORD=secret_sauce
 ```
 
 Then use `{{USERNAME}}` and `{{PASSWORD}}` in an objective. **The AI only ever sees the placeholder** —
@@ -333,9 +333,9 @@ All settings live in **`config.yaml`** (with comments). The most useful ones:
 | `No ANTHROPIC_API_KEY found` | Create `.env` from `.env.example` and add your key (step 4). |
 | `Model '...' not found` | Check `model.name` in `config.yaml`. |
 | The persona stops at a "BLOCKED" step | A guardrail did its job. Answer the pause, or adjust `blocked_click_words` / `extra_allowed_domains`. |
-| `unknown placeholder(s) ['EMAIL']` | The objective uses `{{EMAIL}}` but `.env` has no `TESTSWARM_SECRET_EMAIL`. |
+| `unknown placeholder(s) ['EMAIL']` | The objective uses `{{EMAIL}}` but `.env` has no `SWARMTEST_SECRET_EMAIL`. |
 | Browsers crash or pages time out with many personas | Not enough RAM — lower `swarm.max_parallel` (or `demo --parallel 2`). |
-| Dashboard doesn't open | Go to http://127.0.0.1:8765 yourself; if the port is busy, TestSwarm uses the next free one (printed in the terminal). |
+| Dashboard doesn't open | Go to http://127.0.0.1:8765 yourself; if the port is busy, SwarmTest uses the next free one (printed in the terminal). |
 | Credits ran out mid-run | The persona pauses — top up, then press Enter / **Retry**. |
 
 ---
@@ -343,13 +343,13 @@ All settings live in **`config.yaml`** (with comments). The most useful ones:
 ## Project structure
 
 ```
-TestSwarm/
+SwarmTest/
 ├── config.yaml            # all settings (model, limits, browser, guardrails, pauses, dashboard)
 ├── personas.yaml          # your personas and objectives
 ├── .env.example           # template for your API key and test logins
 ├── requirements.txt
 ├── docs/                  # images used in this README
-└── testswarm/
+└── swarmtest/
     ├── cli.py             # commands: run, demo, check, list
     ├── agent.py           # the look → think → act loop
     ├── browser.py         # Playwright: screenshots, element labels, clicks, typing
